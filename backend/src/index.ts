@@ -1,21 +1,27 @@
-import express from "express";
-import dotenv from "dotenv";
-dotenv.config();
+import express from 'express'
+import dotenv from 'dotenv'
+import cors from 'cors'
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+import resumeRouter from './routes/resume'
+dotenv.config()
 
-app.use(express.json());
+const app = express()
+const PORT = process.env.PORT || 3000
 
-app.get("/", (req, res) => {
-  res.send("Hello, Express with TypeScript!");
-});
+app.use(express.json())
+app.use(cors())
+
+app.get('/', (req, res) => {
+    res.send('Hello to the CV generator!')
+})
+
+app.use('/resume', resumeRouter)
 
 app.use((err: any, req: any, res: any, next: any) => {
-  console.error(err.stack);
-  res.status(500).json({ error: "Something went wrong!" });
-});
+    console.error(err.stack)
+    res.status(500).json({ error: 'Something went wrong!' })
+})
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+    console.log(`Server is running on http://localhost:${PORT}`)
+})
