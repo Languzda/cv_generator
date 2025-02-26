@@ -1,5 +1,5 @@
-import { getHtmlScheme } from '../utils/htmlScheme'
 import puppeteer from 'puppeteer'
+import { getHtmlScheme } from '../utils/generateHtmlScheme'
 
 export async function generateResumeService({
     name,

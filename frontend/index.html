@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generator CV</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: auto;
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+      }
+      button {
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Generator CV</h1>
+    <form id="cvForm">
+      <label>Imię i nazwisko:</label>
+      <input type="text" id="name" value="imie" required />
+
+      <label>Email:</label>
+      <input type="email" id="email" value="test@test.test" required />
+
+      <label>Telefon:</label>
+      <input type="text" id="phone" value="53425" required />
+
+      <label>Doświadczenie:</label>
+      <textarea id="experience" required>XDDDD</textarea>
+
+      <label>Umiejętności (oddzielone przecinkami):</label>
+      <input type="text" id="skills" value="skill1,skill2" required />
+
+      <button type="submit">Generuj PDF</button>
+    </form>
+
+    <script>
+      document
+        .getElementById("cvForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          const data = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            experience: document.getElementById("experience").value,
+            skills: document.getElementById("skills").value.split(","),
+          };
+
+          const response = await fetch(
+            "http://localhost:3000/resume/generate-pdf",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            }
+          );
+
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+          window.open(url);
+        });
+    </script>
+  </body>
+</html>

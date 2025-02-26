@@ -15,6 +15,11 @@ app.get('/', (req, res) => {
     res.send('Hello to the CV generator!')
 })
 
+app.use((req, res, next) => {
+    console.log('Request:', req.method, req.path)
+    next()
+})
+
 app.use('/resume', resumeRouter)
 
 app.use((err: any, req: any, res: any, next: any) => {
