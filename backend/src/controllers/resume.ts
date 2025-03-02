@@ -54,6 +54,41 @@ const DUMMY_EDUCATION: EducationRecord[] = [
 ]
 
 export async function generateResumeController(req: Request, res: Response) {
+    const {
+        name,
+        experience,
+        skills,
+        phone,
+        email,
+        education,
+        languages,
+        description,
+    } = req.body
+
+    console.log(req.body)
+
+    const pdfBuffer = await generateResumeService({
+        name,
+        experience,
+        skills,
+        phone,
+        email,
+        education,
+        languages,
+        description,
+    })
+
+    res.set({
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': 'attachment; filename="cv.pdf"',
+        'Content-Length': pdfBuffer.length,
+    })
+
+    // Wysyłamy binarne dane
+    res.end(pdfBuffer)
+}
+
+export async function generateResumeControllerOld(req: Request, res: Response) {
     const { name, experience, skills, phone, email } = req.body
 
     const pdfBuffer = await generateResumeService({
