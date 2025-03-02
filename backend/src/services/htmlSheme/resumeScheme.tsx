@@ -1,7 +1,24 @@
 import React from 'react'
-import type { ResumeProps } from '@types'
+import {
+    ContactInfo,
+    EducationRecord,
+    ExperienceRecord,
+    Language,
+} from '@types'
 import Experience from './components/Experience'
 import Education from './components/Education'
+import Contact from './components/Contact'
+import Languages from './components/Languages'
+
+export type ResumeProps = {
+    experience: ExperienceRecord[]
+    education: EducationRecord[]
+    description: string
+    skills: string[]
+    urlImage: string
+    contact: ContactInfo
+    languages: Language[]
+}
 
 const Resume: React.FC<ResumeProps> = ({
     contact,
@@ -10,6 +27,7 @@ const Resume: React.FC<ResumeProps> = ({
     description,
     urlImage,
     experience,
+    languages,
 }) => {
     const resumeTitle = `CV | ${contact.name}`
 
@@ -36,14 +54,7 @@ const Resume: React.FC<ResumeProps> = ({
                         </div>
 
                         {/* Kontakt */}
-                        <div className="mb-6">
-                            <h2 className="text-xl font-bold mb-2 uppercase">
-                                Kontakt
-                            </h2>
-                            <p className="font-bold">{contact.name}</p>
-                            <p className="mb-1">{contact.email}</p>
-                            <p className="mb-1">{contact.phone}</p>
-                        </div>
+                        <Contact contact={contact} />
 
                         {/* Umiejętności */}
                         <div className="mb-6">
@@ -56,13 +67,7 @@ const Resume: React.FC<ResumeProps> = ({
                         </div>
 
                         {/* Języki */}
-                        <div className="mb-6">
-                            <h2 className="text-xl font-bold mb-2 uppercase">
-                                Języki
-                            </h2>
-                            <p>Polski (ojczysty)</p>
-                            <p>Angielski (poziom C1)</p>
-                        </div>
+                        <Languages languages={languages} />
                     </div>
 
                     {/* Prawa kolumna */}

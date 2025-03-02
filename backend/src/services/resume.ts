@@ -1,6 +1,11 @@
 import puppeteer from 'puppeteer'
 import { args, getHtmlScheme } from './htmlSheme/generateHtmlScheme'
-import type { ContactInfo } from '@types'
+import type {
+    ContactInfo,
+    EducationRecord,
+    ExperienceRecord,
+    Language,
+} from '@types'
 
 export async function generateResumeService({
     name,
@@ -8,12 +13,18 @@ export async function generateResumeService({
     phone,
     experience,
     skills,
+    languages,
+    description,
+    education,
 }: {
     name: string
-    experience: string
+    experience: ExperienceRecord[]
+    languages: Language[]
+    description: string
     skills: string[]
     phone: string
     email: string
+    education: EducationRecord[]
 }) {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
@@ -22,7 +33,9 @@ export async function generateResumeService({
     console.log({ skills })
     // const skillsArray = skills.split(',').map((skill) => skill.trim())
 
-    const args: args = { cv: { contact, experience, skills } }
+    const args: args = {
+        cv: { contact, education, experience, skills, languages, description },
+    }
 
     console.log({ args })
     console.log({ contact })

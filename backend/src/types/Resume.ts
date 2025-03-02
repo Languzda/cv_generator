@@ -4,15 +4,6 @@ export type ContactInfo = {
     phone: string
 }
 
-export type ResumeProps = {
-    experience: ExperienceRecord[]
-    education: EducationRecord[]
-    description: string
-    skills: string[]
-    urlImage: string
-    contact: ContactInfo
-}
-
 export type ExperienceRecord = {
     company: string
     position: string
@@ -27,4 +18,19 @@ export type EducationRecord = {
     startDate: string
     endDate: string
     description: string
+}
+
+export type Language = {
+    language: string
+    level: string
+}
+
+export type ResumeData = {
+    contactData: ContactInfo
+    educationData: EducationRecord[]
+    experienceData: ExperienceRecord[]
+    languageData: Language[]
+    skillsData: string[]
+    description: string
+    hobbyData: string[]
 }

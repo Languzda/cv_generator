@@ -1,5 +1,5 @@
 import React from 'react'
-import ExperienceRecord from '../../../types/ExperienceRecord'
+import type { ExperienceRecord } from '@types'
 
 export type ExperienceProps = {
     experience: ExperienceRecord[]
