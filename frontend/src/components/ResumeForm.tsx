@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import SkillInput from '@/components/SkillInput.tsx'
+import {DatePicker} from "./DatePicker.tsx"
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -27,29 +29,7 @@ const formSchema = z.object({
   }),
 });
 
-function SkillInput({ index, form }: { index: number; form: any }) {
-  return (
-    <FormField
-      name={`skills.${index}`}
-      control={form.control}
-      defaultValue=""
-      render={({ field }) => (
-        <>
-          <FormItem>
-            <FormLabel>{`Skill number ${index}`}</FormLabel>
-            <FormControl>
-              <Input placeholder="shadcn" {...field} />
-            </FormControl>
-            <FormDescription>
-              This is your public display skill.
-            </FormDescription>
-            <FormMessage />
-          </FormItem>
-        </>
-      )}
-    />
-  );
-}
+
 
 export function ResumeForm() {
   const [skillInputs, setSkillInputs] = useState(1);
@@ -66,7 +46,6 @@ export function ResumeForm() {
 
   const addInput = () => {
     setSkillInputs((prev) => {
-      console.log(prev);
       return prev + 1;
     });
   };
@@ -115,9 +94,9 @@ export function ResumeForm() {
         />
 
         {Array.from({ length: skillInputs }).map((_, index) => (
-          <SkillInput key={index} index={index} form={form.control} />
+          <SkillInput key={index} index={index} form={form} />
         ))}
-
+        <DatePicker />
         <Button type="submit">Submit</Button>
         <Button type="button" onClick={addInput}>
           {" "}

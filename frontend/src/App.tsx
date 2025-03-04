@@ -1,4 +1,5 @@
 import { ResumeForm } from "@/components/ResumeForm.tsx";
+import "./App.css"
 
 const App = () => {
   return (
