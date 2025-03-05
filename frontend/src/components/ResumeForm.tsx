@@ -22,7 +22,9 @@ const formSchema = z.object({
     name: z.string().min(2, {
         message: 'Name must be at least 2 characters.',
     }),
+
     email: z.string().email({ message: 'Invalid email address.' }),
+
     phone: z.string().min(9, {
         message: 'Phone number must be at least 9 characters.',
     }),
@@ -42,6 +44,12 @@ const formSchema = z.object({
                 }),
                 description: z.string().min(2, {
                     message: 'Description must be at least 2 characters.',
+                }),
+                dateStart: z.string().min(2, {
+                    message: 'Date start must be at least 2 characters.',
+                }),
+                dateEnd: z.string().min(2, {
+                    message: 'Date end must be at least 2 characters.',
                 }),
             })
         )

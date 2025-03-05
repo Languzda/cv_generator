@@ -15,22 +15,20 @@ function SkillInput({ index, form }: { index: number; form: any }) {
             control={form.control}
             defaultValue=''
             render={({ field }) => (
-                <>
-                    <FormItem>
-                        {console.log(field)}
-                        <FormLabel>{`Skill number ${index}`}</FormLabel>
-                        <FormControl>
-                            <Input
-                                placeholder='Microsoft Office'
-                                {...field}
-                            />
-                        </FormControl>
-                        <FormDescription>
-                            This is your public display skill.
-                        </FormDescription>
-                        <FormMessage />
-                    </FormItem>
-                </>
+                <FormItem>
+                    {console.log(field)}
+                    <FormLabel>{`Skill number ${index}`}</FormLabel>
+                    <FormControl>
+                        <Input
+                            placeholder='Microsoft Office'
+                            {...field}
+                        />
+                    </FormControl>
+                    <FormDescription>
+                        This is your public display skill.
+                    </FormDescription>
+                    <FormMessage />
+                </FormItem>
             )}
         />
     )

@@ -57,19 +57,53 @@ export default function Experience({ form, index }) {
                     </FormItem>
                 )}
             />
+            <div className='flex'>
+                <FormField
+                    control={form.control}
+                    name={`experience[${index}].dateStart`}
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Data rozpoczęcia pracy</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder='2023-01-01'
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />{' '}
+                <FormField
+                    control={form.control}
+                    name={`experience[${index}].dateEnd`}
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Data zakończenia pracy</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder='2025-01-01'
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+            </div>
             <FormField
                 control={form.control}
                 name={`experience[${index}].description`}
                 render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Opis stanowiska</FormLabel>
+                        <FormLabel>Opis</FormLabel>
                         <FormControl>
                             <Textarea
-                                placeholder='Type your message here.'
+                                placeholder='Opis'
                                 {...field}
                             />
                         </FormControl>
-                        <FormDescription>Wpisz nazwe firmy</FormDescription>
+                        <FormDescription>Opisz swoje obowiązki</FormDescription>
                         <FormMessage />
                     </FormItem>
                 )}
