@@ -15,8 +15,8 @@ import {
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
 import SkillInput from '@/components/SkillInput.tsx'
-import { DatePicker } from './DatePicker.tsx'
 import Experience from '@/components/Experience.tsx'
+import { ExperienceRecord } from 'shared-types/dist'
 
 const formSchema = z.object({
     name: z.string().min(2, {
@@ -36,21 +36,27 @@ const formSchema = z.object({
     experience: z
         .array(
             z.object({
-                company: z.string().min(2, {
-                    message: 'Company name must be at least 2 characters.',
-                }),
-                position: z.string().min(2, {
-                    message: 'Position name must be at least 2 characters.',
-                }),
+                company: z
+                    .string()
+                    .min(2, {
+                        message: 'Company name must be at least 2 characters.',
+                    })
+                    .max(64, {
+                        message: 'Company name must be at most 64 characters.',
+                    }),
+                position: z
+                    .string()
+                    .min(2, {
+                        message: 'Position name must be at least 2 characters.',
+                    })
+                    .max(64, {
+                        message: 'Position name must be at most 64 characters.',
+                    }),
                 description: z.string().min(2, {
                     message: 'Description must be at least 2 characters.',
                 }),
-                dateStart: z.string().min(2, {
-                    message: 'Date start must be at least 2 characters.',
-                }),
-                dateEnd: z.string().min(2, {
-                    message: 'Date end must be at least 2 characters.',
-                }),
+                startDate: z.string().date(),
+                endDate: z.string().date(),
             })
         )
         .nonempty({
@@ -73,6 +79,8 @@ export function ResumeForm() {
                     company: '',
                     position: '',
                     description: '',
+                    startDate: '',
+                    endDate: '',
                 },
             ],
         },
@@ -89,11 +97,20 @@ export function ResumeForm() {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
 
-        const data = {
+        type requestData = {
+            name: string
+            email: string
+            phone: string
+            skills: string[]
+            experience: ExperienceRecord[]
+        }
+
+        const data: requestData = {
             name: values.name,
             email: values.email,
             phone: values.phone,
             skills: values.skills,
+            experience: values.experience,
         }
 
         const response = await fetch(

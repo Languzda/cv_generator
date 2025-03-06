@@ -93,7 +93,7 @@ export async function generateResumeControllerOld(req: Request, res: Response) {
 
     const pdfBuffer = await generateResumeService({
         name,
-        experience: DUMMY_EXPERIENCE,
+        experience,
         skills,
         phone,
         email,

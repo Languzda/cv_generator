@@ -33,7 +33,6 @@ export default function Experience({ form, index }) {
                                 {...field}
                             />
                         </FormControl>
-                        <FormDescription>Wpisz nazwe firmy</FormDescription>
                         <FormMessage />
                     </FormItem>
                 )}
@@ -50,9 +49,6 @@ export default function Experience({ form, index }) {
                                 {...field}
                             />
                         </FormControl>
-                        <FormDescription>
-                            Pozycja, na której pracowałaś
-                        </FormDescription>
                         <FormMessage />
                     </FormItem>
                 )}
@@ -60,12 +56,13 @@ export default function Experience({ form, index }) {
             <div className='flex'>
                 <FormField
                     control={form.control}
-                    name={`experience[${index}].dateStart`}
+                    name={`experience[${index}].startDate`}
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Data rozpoczęcia pracy</FormLabel>
                             <FormControl>
                                 <Input
+                                    type='date'
                                     placeholder='2023-01-01'
                                     {...field}
                                 />
@@ -76,12 +73,13 @@ export default function Experience({ form, index }) {
                 />{' '}
                 <FormField
                     control={form.control}
-                    name={`experience[${index}].dateEnd`}
+                    name={`experience[${index}].endDate`}
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Data zakończenia pracy</FormLabel>
                             <FormControl>
                                 <Input
+                                    type='date'
                                     placeholder='2025-01-01'
                                     {...field}
                                 />
@@ -99,11 +97,10 @@ export default function Experience({ form, index }) {
                         <FormLabel>Opis</FormLabel>
                         <FormControl>
                             <Textarea
-                                placeholder='Opis'
+                                placeholder='Opisz swoje obowiązki w firmie'
                                 {...field}
                             />
                         </FormControl>
-                        <FormDescription>Opisz swoje obowiązki</FormDescription>
                         <FormMessage />
                     </FormItem>
                 )}
